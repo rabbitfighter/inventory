@@ -24,7 +24,7 @@ $mysqli->query("SET NAMES 'utf8'");
 <html lang="en">
 <head>
 <title>
-cais.org</title>
+I.T. Inventory</title>
 <meta charset="utf-8">
 
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
@@ -32,7 +32,7 @@ cais.org</title>
 
 <!-- Bootstrap core CSS -->
     <link href="inc/bootstrap3/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="../inc/FontAwesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="inc/FontAwesome/css/font-awesome.min.css">
 
 </head>
 <body style='margin-top:110px;'>

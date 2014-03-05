@@ -16,7 +16,7 @@ if($_SESSION["loggedin"] == true) {
 			<li><a href='reports.php?report=no_date'>Assets with no purchase date</a></li>
 			<li><a href='reports.php?report=no_serial'>Assets with no serial number</a></li>
 			<li><a href='reports.php?report=replace_by_year'>Assets to be replaced by year</a></li>
-			<li><a href='reports.php?report=purchased_between'>Assets purchased between 1/1/13 and 12/31/2013</a></li>
+			<li><a href='reports.php?report=purchased_between'>2013 purchases</a></li>
 		</ul>";
 	}
 	// otherwise, show requested report
@@ -71,7 +71,7 @@ function getReport($report,$mysqli) {
 	global $howmany;
 
 	if($report == "no_price") {
-		$query = "SELECT * FROM items WHERE price='$0'";
+		$query = "SELECT * FROM items WHERE price='0'";
 	}
 	else if ($report == "no_date") {
 		$query = "SELECT * FROM items WHERE date_purchased=''";

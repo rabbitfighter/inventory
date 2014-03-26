@@ -93,7 +93,7 @@ while ($row = mysqli_fetch_array($result)) {
 <?php
 if(isset($_POST["type"])) {
 	$type = $_POST["type"];
-	$query = "SELECT * FROM items WHERE type='$type'";
+	$query = "SELECT * FROM items WHERE retired='0000-00-00' AND type='$type'";
 }
 elseif(isset($_POST["vendor"])) {
 	$vendor = $_POST["vendor"];
@@ -113,7 +113,7 @@ elseif(isset($_POST["search"])) {
 	OR user LIKE '%$search%'";
 }
 else {
-	$query = "SELECT * FROM items ORDER BY asset_id DESC";
+	$query = "SELECT * FROM items WHERE retired='0000-00-00' ORDER BY asset_id DESC";
 }
 $result = $mysqli->query($query);
 
@@ -128,6 +128,8 @@ echo "<table class='table table-striped'>
 		<th>Vendor</th>
 		<th>Location</th>
 		<th>User</th>
+		<th></th>
+		<th></th>
 		<th></th>
 	</tr>";
 
@@ -155,7 +157,9 @@ while ($row = mysqli_fetch_array($result)) {
         <td>$vendor</td>
         <td>$location</td>
         <td>$user</td>
+        <td><a href='item.php?action=view&asset_id=$asset_id'><i class='icon-file-alt'></i></a></td>
         <td><a href='item.php?action=edit&asset_id=$asset_id'><i class='icon-edit'></i></a></td>
+        <td><a href='item.php?action=retire&asset_id=$asset_id&hostname=$hostname'><i class='icon-remove-sign'></i></a></td>
     </tr>";
 
 }

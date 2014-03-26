@@ -26,7 +26,12 @@ elseif(isset($_POST["edit"])) {
 	$message = $return[0];
 	
 }
+elseif(isset($_POST["retire"])) {
 
+	$message = retireItem($mysqli);
+	$_GET["action"] = 'retire';
+	
+}
 
 // FORM FOR ADDING AN ITEM
 if($_GET["action"] == 'add') {
@@ -586,6 +591,61 @@ elseif($_GET["action"] == 'edit' || $edit == true) {
 
 }
 
+// VIEW AN ITEM
+elseif($_GET["action"] == 'view') {
+
+	$asset_id = $_GET["asset_id"];
+	
+	echo "<table class='table table-striped'>";
+	
+	$query = "SELECT * FROM items WHERE asset_id='$asset_id'";
+	$result = $mysqli->query($query);
+	while ($row = mysqli_fetch_array($result)) {
+		echo "<tr><td>Hostname</td><td>" . $row["hostname"] . "</td></tr>";
+		echo "<tr><td>Model</td><td>" . $row["model"] . "</td></tr>";
+		echo "<tr><td>Description</td><td>" . $row["description"] . "</td></tr>";
+		echo "<tr><td>Purchase Date</td><td>" . $row["date_purchased"] . "</td></tr>";
+		echo "<tr><td>Price</td><td>" . $row["price"] . "</td></tr>";
+		echo "<tr><td>Group</td><td>" . $row["type"] . "</td></tr>";
+		echo "<tr><td>Vendor</td><td>" . $row["vendor"] . "</td></tr>";
+		echo "<tr><td>Location</td><td>" . $row["location"] . "</td></tr>";
+		echo "<tr><td>User</td><td>" . $row["user"] . "</td></tr>";
+		echo "<tr><td>LAN MAC</td><td>" . $row["LAN_MAC"] . "</td></tr>";
+		echo "<tr><td>WiFi MAC</td><td>" . $row["wifi_MAC"] . "</td></tr>";
+		echo "<tr><td>Service Tag/Serial #</td><td>" . $row["service_tag_serial"] . "</td></tr>";
+		echo "<tr><td>Processor</td><td>" . $row["processor"] . "</td></tr>";
+		echo "<tr><td>RAM</td><td>" . $row["RAM"] . "</td></tr>";
+		echo "<tr><td>Support Expires</td><td>" . $row["support_expires"] . "</td></tr>";
+		echo "<tr><td>Room</td><td>" . $row["room"] . "</td></tr>";
+		echo "<tr><td>Static IP</td><td>" . $row["static_IP"] . "</td></tr>";
+	}
+
+	echo "</table>";
+
+}
+
+// RETIRE AN ITEM
+elseif($_GET["action"] == 'retire') {
+
+	if(isset($message)) {
+		echo "$message";
+	}
+	else {
+		$asset_id = $_GET["asset_id"];
+		$hostname = $_GET["hostname"];
+		$today = date("Y-m-d");
+		
+		echo "
+		<div class='well'>
+		Do you want to retire Asset ID# $asset_id ($hostname) effective $today?<br><br>
+		<form name='retire' method='post' action='item.php?asset_id=$asset_id'>
+		<button type='submit' name='retire' class='btn btn-primary'>Retire Asset</button>
+		</form>
+		</div>";
+	}
+
+}
+
 // ERROR
 else {
 	echo "no action specified";
@@ -753,4 +813,23 @@ function editItem($mysqli) {
 
 }
 
+function retireItem($mysqli) {
+	$asset_id = $_GET["asset_id"];
+	$today = date("Y-m-d");
+	$query = "UPDATE items SET retired='$today' WHERE asset_ID='$asset_id'";
+	echo $query;
+	$result = $mysqli->query($query);
+	if($result) {	
+		$message = "<div class='alert alert-success'>Asset Retired.</div>";
+		return $message;
+	}
+}
+
+
+
 ?>
+
+
+
+
+

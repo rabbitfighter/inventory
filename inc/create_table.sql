@@ -1,9 +1,6 @@
 --
 -- Database: `inventory`
 --
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `items`
 --
@@ -28,5 +25,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `support_expires` varchar(18) DEFAULT NULL,
   `room` varchar(10) DEFAULT NULL,
   `static_IP` varchar(21) DEFAULT NULL,
-  `retired` date NOT NULL
+  `retired` date NOT NULL DEFAULT '0000-00-00',
+  `checkout_user` varchar(100) NOT NULL,
+  `checkout_date` date NOT NULL DEFAULT '0000-00-00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

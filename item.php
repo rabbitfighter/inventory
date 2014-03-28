@@ -26,6 +26,21 @@ elseif(isset($_POST["edit"])) {
 	$message = $return[0];
 	
 }
+
+elseif(isset($_POST["checkout"])) {
+
+	$message = checkoutItem($mysqli);
+	$_GET["action"] = 'checkout';
+	
+}
+
+elseif(isset($_POST["checkin"])) {
+
+	$message = checkinItem($mysqli);
+	$_GET["action"] = 'checkin';
+	
+}
+
 elseif(isset($_POST["retire"])) {
 
 	$message = retireItem($mysqli);
@@ -624,6 +639,29 @@ elseif($_GET["action"] == 'view') {
 
 }
 
+// CHECK OUT AN ITEM
+elseif($_GET["action"] == 'checkout') {
+	
+	if(isset($message)) {
+		echo "$message";
+	}
+	else {
+		$asset_id = $_GET["asset_id"];
+		$hostname = $_GET["hostname"];
+		$today = date("Y-m-d");
+		
+		echo "
+		<div class='well'>
+		Checking out Asset ID# $asset_id ($hostname) effective $today to:<br><br>
+		<form name='retire' method='post' action='item.php?asset_id=$asset_id'>
+		<input type='text' class='form-control' placeholder='user name' name='username'><br>
+		<button type='submit' name='checkout' class='btn btn-primary'>Check Out Asset</button>
+		</form>
+		</div>";
+	}
+	
+}
+
 // RETIRE AN ITEM
 elseif($_GET["action"] == 'retire') {
 
@@ -640,6 +678,27 @@ elseif($_GET["action"] == 'retire') {
 		Do you want to retire Asset ID# $asset_id ($hostname) effective $today?<br><br>
 		<form name='retire' method='post' action='item.php?asset_id=$asset_id'>
 		<button type='submit' name='retire' class='btn btn-primary'>Retire Asset</button>
+		</form>
+		</div>";
+	}
+
+}
+
+// RETIRE AN ITEM
+elseif($_GET["action"] == 'checkin') {
+
+	if(isset($message)) {
+		echo "$message";
+	}
+	else {
+		$asset_id = $_GET["asset_id"];
+		$hostname = $_GET["hostname"];
+		
+		echo "
+		<div class='well'>
+		Do you want to check in Asset ID# $asset_id ($hostname)?<br><br>
+		<form name='checkin' method='post' action='item.php?asset_id=$asset_id'>
+		<button type='submit' name='checkin' class='btn btn-primary'>Check In Asset</button>
 		</form>
 		</div>";
 	}
@@ -813,11 +872,36 @@ function editItem($mysqli) {
 
 }
 
+function checkoutItem($mysqli) {
+	$asset_id = $_GET["asset_id"];
+	$user = mysqli_real_escape_string($_POST["username"]);
+	$today = date("Y-m-d");
+	$query = "UPDATE items SET checkout_user='$user', checkout_date='$today' WHERE asset_ID='$asset_id'";
+	//echo $query;
+	$result = $mysqli->query($query);
+	if($result) {	
+		$message = "<div class='alert alert-success'>Asset checked out.</div>";
+		return $message;
+	}
+}
+
+function checkinItem($mysqli) {
+	$asset_id = $_GET["asset_id"];
+	$query = "UPDATE items SET checkout_user='', checkout_date='0000-00-00' WHERE asset_ID='$asset_id'";
+	//echo $query;
+	$result = $mysqli->query($query);
+	if($result) {	
+		$message = "<div class='alert alert-success'>Asset checked in.</div>";
+		return $message;
+	}
+}
+
+
 function retireItem($mysqli) {
 	$asset_id = $_GET["asset_id"];
 	$today = date("Y-m-d");
 	$query = "UPDATE items SET retired='$today' WHERE asset_ID='$asset_id'";
-	echo $query;
+	//echo $query;
 	$result = $mysqli->query($query);
 	if($result) {	
 		$message = "<div class='alert alert-success'>Asset Retired.</div>";

@@ -17,6 +17,7 @@ if($_SESSION["loggedin"] == true) {
 			<li><a href='reports.php?report=no_serial'>Assets with no serial number</a></li>
 			<li><a href='reports.php?report=replace_by_year'>Assets to be replaced by year</a></li>
 			<li><a href='reports.php?report=purchased_between'>2013 purchases</a></li>
+			<li><a href='reports.php?report=retired'>Retired Assets</a></li>
 		</ul>";
 	}
 	// otherwise, show requested report
@@ -81,6 +82,9 @@ function getReport($report,$mysqli) {
 	}
 	else if ($report == "purchased_between") {
 		$query = "SELECT * FROM items WHERE date_purchased > '2012-12-31' AND date_purchased < '2014-01-01' ORDER BY date_purchased ASC";
+	}
+	else if ($report == "retired") {
+		$query = "SELECT * FROM items WHERE retired != '0000-00-00' ORDER BY retired ASC";
 	}
 	//echo $query . "<br>";
 	$result = $mysqli->query($query);

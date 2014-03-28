@@ -47,6 +47,7 @@ I.T. Inventory</title>
 	<div class="collapse navbar-collapse">
 	<ul class="nav navbar-nav">
 		<li><a href="item.php?action=add"><b>Add Item</b></a></li>
+		<li><a href="checked_out.php"><b>View Checked Out Items</b></a></li>
 		<li><a href="reports.php"><b>Reports</b></a></li>
 	</ul>
 	</div>

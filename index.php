@@ -122,12 +122,12 @@ echo "<table class='table table-striped'>
 		<th>Asset_ID</th>
 		<th>Group</th>
 		<th>Hostname</th>
-		<th>Description</th>
 		<th>Date_Purchased</th>
 		<th>Price</th>
 		<th>Vendor</th>
 		<th>Location</th>
 		<th>User</th>
+		<th></th>
 		<th></th>
 		<th></th>
 		<th></th>
@@ -139,7 +139,6 @@ while ($row = mysqli_fetch_array($result)) {
 	$type = $row["type"];
 	$hostname = $row["hostname"];
 	//$model = $row["model"];
-	$description = $row["description"];
 	$date_purchased = $row["date_purchased"];
 	$price = $row["price"];
 	$vendor = $row["vendor"];
@@ -151,7 +150,6 @@ while ($row = mysqli_fetch_array($result)) {
         <td>$asset_id</td>
         <td>$type</td>
         <td>$hostname</td>
-        <td>$description</td>
         <td>$date_purchased</td>
         <td>$price</td>
         <td>$vendor</td>
@@ -159,6 +157,7 @@ while ($row = mysqli_fetch_array($result)) {
         <td>$user</td>
         <td><a href='item.php?action=view&asset_id=$asset_id'><i class='icon-file-alt'></i></a></td>
         <td><a href='item.php?action=edit&asset_id=$asset_id'><i class='icon-edit'></i></a></td>
+        <td><a href='item.php?action=checkout&asset_id=$asset_id&hostname=$hostname'><i class='icon-briefcase'></i></a></td>
         <td><a href='item.php?action=retire&asset_id=$asset_id&hostname=$hostname'><i class='icon-remove-sign'></i></a></td>
     </tr>";
 

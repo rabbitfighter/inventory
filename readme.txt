@@ -7,8 +7,9 @@ NOTE:
 
 This is a small web app for tracking IT inventory. I am writing it for use at the school where I work. It is partially functional but not ready for use yet. 
 
-This app uses Bootstrap3 and FontAwesome.
+This app uses Bootstrap3, the free Bootswatch Yeti theme, and FontAwesome.
  -- http://getbootstrap.com/
+ -- http://bootswatch.com/yeti/
  -- http://fortawesome.github.io/Font-Awesome/
 
 

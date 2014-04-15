@@ -29,6 +29,15 @@ I.T. Inventory</title>
 
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="inc/bootstrap3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="inc/tablesorter/jquery.tablesorter.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#sortable").tablesorter(); 
+    } 
+); 
+</script>
 
 <!-- Bootstrap core CSS -->
     <!--<link href="inc/bootstrap3/css/bootstrap.css" rel="stylesheet">-->
@@ -49,7 +58,7 @@ I.T. Inventory</title>
 	<ul class="nav navbar-nav">
 		<li><a href="item.php?action=add"><b>Add Item</b></a></li>
 		<li><a href="checked_out.php"><b>Loaned Items</b></a></li>
-		<li><a href="reports.php"><b>Reports</b></a></li>
+		<li><a href="reports.php"><b>Queries</b></a></li>
 	</ul>
 	</div>
 </div>

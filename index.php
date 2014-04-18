@@ -108,7 +108,8 @@ elseif(isset($_POST["search"])) {
 	$query = "SELECT * FROM items WHERE 
 	asset_id LIKE '%$search%' 
 	OR type LIKE '%$search%' 
-	OR hostname LIKE '%$search%' 
+	OR hostname LIKE '%$search%'
+	OR model LIKE '%$search%'
 	OR description LIKE '%$search%' 
 	OR user LIKE '%$search%'";
 }
@@ -124,6 +125,7 @@ echo "
 		<th>Asset_ID</th>
 		<th>Group</th>
 		<th>Hostname</th>
+		<th>Model</th>
 		<th>Date_Purchased</th>
 		<th>Price</th>
 		<th>Vendor</th>
@@ -142,7 +144,7 @@ while ($row = mysqli_fetch_array($result)) {
 	$asset_id = $row["asset_ID"];
 	$type = $row["type"];
 	$hostname = $row["hostname"];
-	//$model = $row["model"];
+	$model = $row["model"];
 	$date_purchased = $row["date_purchased"];
 	$price = $row["price"];
 	$vendor = $row["vendor"];
@@ -154,6 +156,7 @@ while ($row = mysqli_fetch_array($result)) {
         <td>$asset_id</td>
         <td>$type</td>
         <td>$hostname</td>
+        <td>$model</td>
         <td>$date_purchased</td>
         <td>$price</td>
         <td>$vendor</td>

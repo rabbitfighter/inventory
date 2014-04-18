@@ -12,6 +12,13 @@ This app uses Bootstrap3, the free Bootswatch Yeti theme, FontAwesome, and the j
  -- http://bootswatch.com/yeti/
  -- http://fortawesome.github.io/Font-Awesome/
  -- http://tablesorter.com/
+ 
+
+DEMO:
+
+You can try it here: http://www.imipolex.org/inventory/
+  * editing is disabled
+  * username/password : admin/admin
 
 
 INSTALLATION:

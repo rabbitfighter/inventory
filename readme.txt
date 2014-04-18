@@ -5,7 +5,7 @@ INVENTORY
 
 NOTE:
 
-This is a small web app for tracking IT inventory. I am writing it for use at the school where I work. It is partially functional but not ready for use yet. 
+This is a small web app for tracking IT inventory. I am writing it for use at the school where I work. It is mostly functional but might have some bugs.
 
 This app uses Bootstrap3, the free Bootswatch Yeti theme, FontAwesome, and the jquery tablesorter plugin.
  -- http://getbootstrap.com/

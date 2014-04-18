@@ -653,7 +653,7 @@ elseif($_GET["action"] == 'checkout') {
 		echo "
 		<div class='well'>
 		Checking out Asset ID# $asset_id ($hostname) effective $today to:<br><br>
-		<form name='retire' method='post' action='item.php?asset_id=$asset_id'>
+		<form name='checkout' method='post' action='item.php?asset_id=$asset_id'>
 		<input type='text' class='form-control' placeholder='user name' name='username'><br>
 		<button type='submit' name='checkout' class='btn btn-primary'>Check Out Asset</button>
 		</form>
@@ -684,7 +684,7 @@ elseif($_GET["action"] == 'retire') {
 
 }
 
-// RETIRE AN ITEM
+// CHECK IN AN ITEM
 elseif($_GET["action"] == 'checkin') {
 
 	if(isset($message)) {
@@ -874,15 +874,29 @@ function editItem($mysqli) {
 
 function checkoutItem($mysqli) {
 	$asset_id = $_GET["asset_id"];
-	$user = mysqli_real_escape_string($_POST["username"]);
-	$today = date("Y-m-d");
-	$query = "UPDATE items SET checkout_user='$user', checkout_date='$today' WHERE asset_ID='$asset_id'";
-	//echo $query;
+	// make sure item not already checked out
+	$query = "SELECT checkout_user FROM items WHERE asset_ID='$asset_id'";
 	$result = $mysqli->query($query);
-	if($result) {	
-		$message = "<div class='alert alert-success'>Asset checked out.</div>";
-		return $message;
+	while ($row = mysqli_fetch_array($result)) {
+		if ($row["checkout_user"] == '') {
+			$user = mysqli_real_escape_string($mysqli,$_POST["username"]);
+			$today = date("Y-m-d");
+			$query2 = "UPDATE items SET checkout_user='$user', checkout_date='$today' WHERE asset_ID='$asset_id'";
+			//echo $query;
+			$result2 = $mysqli->query($query2);
+			if($result2) {	
+				$message = "<div class='alert alert-success'>Asset checked out.</div>";
+			return $message;
+			}
+		}
+		else {
+			$message = "<div class='alert alert-danger'>Sorry--asset already checked out to " . $row["checkout_user"] . "</div>";
+			return $message;
+		}
 	}
+	
+	
+	
 }
 
 function checkinItem($mysqli) {

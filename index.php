@@ -117,7 +117,9 @@ else {
 }
 $result = $mysqli->query($query);
 
-echo "<table class='table table-striped'>
+echo "
+<table id='sortable' class='table table-striped'>
+	<thead>
 	<tr>
 		<th>Asset_ID</th>
 		<th>Group</th>
@@ -131,7 +133,9 @@ echo "<table class='table table-striped'>
 		<th></th>
 		<th></th>
 		<th></th>
-	</tr>";
+	</tr>
+	</thead>
+	<tbody>";
 
 while ($row = mysqli_fetch_array($result)) {
 	
@@ -163,7 +167,9 @@ while ($row = mysqli_fetch_array($result)) {
 
 }
 
-echo "</table>";
+echo "
+	</tbody>
+</table>";
 
 }
 

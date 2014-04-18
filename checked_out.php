@@ -7,10 +7,10 @@ include("inc/header.php");
 if($_SESSION["loggedin"] == true) {
 	
 	echo "
-	<div class='well'>
-	<table class='table table-striped'>";
+	<table id='sortable' class='table table-striped'>";
 	
 	echo "
+	<thead>
     <tr>
         <th>Asset ID</th>
         <th>Group</th>
@@ -19,7 +19,9 @@ if($_SESSION["loggedin"] == true) {
         <th>Checkout User</th>
         <th>Checkout Date</th>
         <th></th>
-    </tr>";
+    </tr>
+    </thead>
+    <tbody>";
 
 	
 	$query = "SELECT * FROM items WHERE checkout_user != '' ORDER BY checkout_date ASC";
@@ -47,8 +49,8 @@ if($_SESSION["loggedin"] == true) {
 	}
 
 	echo "
-	</table>
-	</div>";
+	</tbody>
+	</table>";
 
 }
 

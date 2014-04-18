@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `price` int(20) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
   `vendor` varchar(25) DEFAULT NULL,
-  `location` varchar(6) DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
   `user` varchar(50) DEFAULT NULL,
   `LAN_MAC` varchar(20) DEFAULT NULL,
   `wifi_MAC` varchar(20) DEFAULT NULL,

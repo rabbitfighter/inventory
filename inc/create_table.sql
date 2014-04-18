@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `asset_ID` int(5) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `date_purchased` date DEFAULT NULL,
-  `price` varchar(20) DEFAULT NULL,
+  `price` int(20) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
   `vendor` varchar(25) DEFAULT NULL,
   `location` varchar(6) DEFAULT NULL,

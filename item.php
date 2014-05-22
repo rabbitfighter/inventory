@@ -74,12 +74,38 @@ if($_GET["action"] == 'add') {
 	</div>
 	
 	<!-- Model -->
-	<div class="form-group">
+	<!--<div class="form-group">
 		<label for="model" class="col-sm-2 control-label">Model</label>
 		<div class="col-sm-10">
 		<input type="text" class="form-control" name="model" id="model">
 		</div>
+	</div>-->
+	
+	<div class="form-group">
+		<label for="model" class="col-sm-2 control-label">Model</label>
+		<div class="col-sm-10">
+		<select name='model' class='form-control'>
+
+		<?php
+		$query = "SELECT DISTINCT model FROM items WHERE model <> '' ORDER BY model ASC";
+		$result = $mysqli->query($query);
+		while ($row = mysqli_fetch_array($result)) {
+			echo "<option value='" . $row["model"] . "'>" . $row["model"] . "</option>";
+		}
+		
+		?>
+
+		</select>
+		</div>
 	</div>
+	<div class="form-group">
+		<label for="new_model" class="col-sm-2 control-label">New Model</label>
+		<div class="col-sm-10">
+		<input type="text" class="form-control" name='new_model' id="new_model" placeholder='leave blank if existing model'>
+		</div>
+	</div>
+	
+	
 	
 	<!-- Description -->
 	<div class="form-group">
@@ -734,6 +760,9 @@ function addItem($mysqli) {
 	$asset_id = $_POST["asset_id"];
 	$hostname = $_POST["hostname"];
 	$model = $_POST["model"];
+	if($new_model != "") {
+		$model = $new_model;
+	}
 	$description = $_POST["description"];
 	$date_purchased = $_POST["date_purchased"];
 	$price = $_POST["price"];

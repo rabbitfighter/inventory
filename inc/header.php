@@ -59,6 +59,7 @@ $(document).ready(function()
 		<li><a href="item.php?action=add"><b>Add Item</b></a></li>
 		<li><a href="checked_out.php"><b>Loaned Items</b></a></li>
 		<li><a href="reports.php"><b>Queries</b></a></li>
+		<li><a href="printer_supplies.php"><b>Printer Supplies</b></a></li>
 	</ul>
 	</div>
 </div>

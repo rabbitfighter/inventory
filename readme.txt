@@ -32,7 +32,8 @@ INSTALLATION:
   * You will need a *nix web server running recent versions of Apache, PHP5, and mySQL (LAMP)
   * phpmyadmin is useful too: http://www.phpmyadmin.net/
   * create a new mySQL database called 'inventory' 
-  * Use the inc/create_table.sql file to create the items table
+  * Use the inc/create_items_table.sql file to create the items table
+  * Use the inc/create_printer_supplies_table.sql file to create the items table
   * download the source files and copy them to a directory off you web root or just clone the repository
   * create a new file called config.php in the inc folder (inc/config.php)
   * paste the following into the config.php file:
